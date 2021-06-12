@@ -61,11 +61,11 @@ body{
 }
 @keyframes p {
     0%{
-        width: 0px;
+        width: 0%;
     }
     
     100%{
-        width: 1525px;
+        width: 100%;
         background: green;
     }
     
