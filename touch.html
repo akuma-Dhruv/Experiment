@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let touchstartX = 0;
+let touchstartY = 0;
+let touchendX = 0;
+let touchendY = 0;
+
+const gestureZone = document.getElementById('gestureZone');
+
+gestureZone.addEventListener('touchstart', function(event) {
+    touchstartX = event.changedTouches[0].screenX;
+    touchstartY = event.changedTouches[0].screenY;
+}, false);
+
+gestureZone.addEventListener('touchend', function(event) {
+    touchendX = event.changedTouches[0].screenX;
+    touchendY = event.changedTouches[0].screenY;
+    handleGesture();
+}, false); 
+
+function handleGesture() {
+    if (touchendX <= touchstartX) {
+        alert('Swiped left');
+    }
+    
+    if (touchendX >= touchstartX) {
+        alert('Swiped right');
+    }
+    
+    if (touchendY <= touchstartY) {
+        alert('Swiped up');
+    }
+    
+    if (touchendY >= touchstartY) {
+        alert('Swiped down');
+    }
+    
+    if (touchendY === touchstartY) {
+        alert('Tap');
+    }
+}
+    </script>
+</body>
+</html>
