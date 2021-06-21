@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Move</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #392A48;
+        }
+        .thing{
+            position: relative;
+            height: 50px;
+            width: 50px;
+            background-color: #B33F40;
+            left:0;
+            top: 0;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="thing"></div>
+    <script>
+        const obj = document.querySelector(".thing");
+        window.addEventListener('keydown',moveObj);
+        function moveObj(e){    
+            var x= parseInt(obj.style.left);
+            var y= parseInt(obj.style.top);
+            if(!x)
+            x=0;
+            if(!y)
+            y=0;
+            
+            switch(e.key){
+                case "ArrowUp": obj.style.top= y-50+'px'; break;
+                case "ArrowDown": obj.style.top= y+50+'px'; break;
+                case "ArrowLeft": obj.style.left= x-50+'px'; break;
+                case "ArrowRight": obj.style.left= x+50+'px'; break;
+                
+            }
+           
+        }
+    </script>
+</body>
+</html>
