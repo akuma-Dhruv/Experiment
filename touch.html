@@ -25,19 +25,19 @@ window.addEventListener('touchend', function(event) {
 }, false); 
 
 function handleGesture() {
-    if (touchendX <= touchstartX) {
+    if (touchendX < touchstartX) {
         alert('Swiped left');
     }
     
-    if (touchendX >= touchstartX) {
+    if (touchendX > touchstartX) {
         alert('Swiped right');
     }
     
-    if (touchendY <= touchstartY) {
+    if (touchendY < touchstartY) {
         alert('Swiped up');
     }
     
-    if (touchendY >= touchstartY) {
+    if (touchendY > touchstartY) {
         alert('Swiped down');
     }
     
