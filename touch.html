@@ -6,9 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+         body{
+            margin: 0;
+            padding: 0;
+            background-color: #392A48;
+        }
+        h1{
+            color: white;
+            
+        }
+    </style>
 </head>
 
 <body>
+    <h1>try swiping or taping anywhere</h1>
     <script>
         let touchstartX = 0;
         let touchstartY = 0;
@@ -18,13 +30,11 @@
         window.addEventListener('touchstart', function (event) {
             touchstartX = event.changedTouches[0].screenX;
             touchstartY = event.changedTouches[0].screenY;
-            console.log(touchstartX, ' ', touchstartY);
         }, false);
 
         window.addEventListener('touchend', function (event) {
             touchendX = event.changedTouches[0].screenX;
             touchendY = event.changedTouches[0].screenY;
-            console.log(touchendX, ' ', touchendY);
             handleGesture();
         }, false);
 
