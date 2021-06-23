@@ -78,52 +78,7 @@
 
     <h4 class="remark">Try pressing UP key</h4>
     <div class="thing"></div>
-    <script>
-        const obj = document.querySelector(".thing");
-        if (screen.width < 1000) {
-
-            document.querySelector(".remark").innerHTML = "Oops, you are on mobile,Try using a keyboard via otg";
-        }
-        window.addEventListener('keydown', moveObj);
-
-        function moveObj(e) {
-
-            var x = parseInt(obj.style.left);
-            var y = parseInt(obj.style.top);
-            var yh = screen.height - 315;
-            var xw = screen.width;
-            console.log(screen.height,' ',screen.availHeight);
-
-            if (!x)
-                x = 0;
-            if (!y)
-                y = 0;
-
-            switch (e.key) {
-                case "ArrowUp":if(y>-50) obj.style.top = y - 50 + 'px'; else  obj.style.top = -85 + 'px';break;
-                case "ArrowDown":
-                    if (y < yh) {
-                        obj.style.top = y + 50 + 'px';
-                        console.log("if triggered");
-                    }
-                    break;
-
-
-                case "ArrowLeft": if (x-50 >=16) {
-                    obj.style.left = x - 50 + 'px';
-                }else{
-                    obj.style.left = 16+ 'px';
-                }
-                    break;
-                case "ArrowRight":
-                    if (x < (xw - 100)) {
-                        obj.style.left = x + 50 + 'px';
-                    }
-                    break;
-            }
-
-        }
-    </script>
+    <script src="/script.js"></script>
 </body>
 
 </html>
