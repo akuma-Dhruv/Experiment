@@ -6,7 +6,7 @@ var touchendY = 0;
 const obj = document.querySelector(".thing");
 if (screen.width < 1000) {
 
-    document.querySelector(".remark").innerHTML = "Oops, you are on mobile,Try using a keyboard via otg";
+    document.querySelector(".remark").innerHTML = "Oops, you are on mobile,Try swiping Up or Down";
 }
 window.addEventListener('keydown', handleKeyResponse);
 
