@@ -4,15 +4,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>color</title>
+    <title>Mouse event</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+    .text{
+       left: 45%;
+        color:#fff;
+        position:absolute;
+    }
+    a{
+        color: yellow;
+    }
+        #contentContainer{
+            width: 100%;
+            height: 100vh;
+            
+            overflow: hidden;
+        }
+        #thing{
+            width: 7vh;
+            height: 7vh;
+            background-color:rgb(255, 240, 43);
+            border-radius: 50%;
+            border:2vh rgb(255, 235, 40) solid;
+            transform: translate3d(50px,50px,0);
+            transition: .4s cubic-bezier(0,-0.41,1,1.41);
+        }
+    </style>
 </head>
-<body>
-    <h1>This page display this 0-10-0 loop</h1>
-    <div class= 'count'></div>
-    <div class="block"></div>
-    <div class="rightBlock" ></div>
-    
-   
+<body style="background-color: #392A48;">
+    <h3 class ='text'>Try clicking anywhere or <a href="https://akuma-dhruv.github.io/Experiment/key.html">ME!</a>but <a href="https://akuma-dhruv.github.io/Experiment/touch.html">Not Me!!</a></h3>
+<div id= 'contentContainer'>
+    <div id="thing"></div>
+</div>
+<script>
+    var thing = document.querySelector("#thing");
+    var container = document.querySelector("#contentContainer");
+    container.addEventListener("click",getClickPosition,false);
+    function getClickPosition(e)
+    {
+        console.log(":i m working");
+        // var parentPostion= getPosition(contyainer);
+        var xPosition = e.clientX-(thing.offsetWidth/2);
+        var YPosition = e.clientY-(thing.offsetHeight/2);
+        var t="translate3d("+xPosition+"px,"+YPosition+'px,0)';
+        console.log(t);
+        thing.style.transform=t;
+    }
+</script>
 </body>
 </html>
