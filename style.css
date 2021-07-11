@@ -5,6 +5,7 @@ body{
     flex-direction: column;
     justify-items: center;
     align-items: center;
+    overscroll-behavior: none;
 }
 canvas{
     
