@@ -241,6 +241,12 @@ function reset() {
     startSound.play();
     drawgame();
 }
+function togglePause(){
+    moveObj(' '); 
+}
+function reset(){
+    moveObj('r');
+}
 
 startSound.play();
 drawgame();
