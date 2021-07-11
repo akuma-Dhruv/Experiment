@@ -244,7 +244,7 @@ function reset() {
 function togglePause(){
     moveObj(' '); 
 }
-function reset(){
+function Treset(){
     moveObj('r');
 }
 
