@@ -169,8 +169,8 @@ function moveObj(e) {
             case "ArrowLeft": if (xVelocity === 1 || pause) { return; } xVelocity = -1; yVelocity = 0; break;
             case " ": if (pause) { pause = false; drawgame(); } else pause = true; break;
             case 'r' || 'R': if(enableReset) reset(); break;
+        case 'd': if(noWalls){noWalls=false; walls.checked=false;}else{noWalls=true; walls.checked=true;} break;
         }
-        console.log(e.key);
     }
 }
 function over() {
