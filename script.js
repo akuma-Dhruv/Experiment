@@ -11,7 +11,7 @@ let speed = 7;
 let pause = false;
 
 let tileCount = 20;
-let tileSize = canvas.width / tileCount - 2;
+let tileSize = canvas.width / tileCount;
 let headX = 10;
 let headY = 10;
 
@@ -21,30 +21,36 @@ let yVelocity = 0;
 let appleX = 5;
 let appleY = 5;
 
+let GappleX = 7;
+let GappleY = 7;
+let PowerUp= false;
+
+
 const snakeParts = [];
 let tailLenght = 2;
 let score = 0;
 
-var enableReset=false;
+var enableReset = false;
 
-let noWalls=walls.checked;
+let noWalls = walls.checked;
 
 const sound = new Audio('gulp.mp3');
 const overSound = new Audio('over.wav');
-const startSound= new Audio('beep.mp3')
+const startSound = new Audio('beep.mp3');
+const gaSound = new Audio('ga.wav');
 
 window.addEventListener('keydown', handleKeyResponse);
 
 window.addEventListener('touchstart', function (event) {
     touchstartX = event.changedTouches[0].screenX;
     touchstartY = event.changedTouches[0].screenY;
-     //console.log("Touch Start::i m working check ");
+    //console.log("Touch Start::i m working check ");
 }, false);
 
 window.addEventListener('touchend', function (event) {
     touchendX = event.changedTouches[0].screenX;
     touchendY = event.changedTouches[0].screenY;
-     //console.log("Touch end::i m working check ");
+    //console.log("Touch end::i m working check ");
 
     handleGesture();
 }, false);
@@ -52,15 +58,15 @@ window.addEventListener('touchend', function (event) {
 function handleGesture() {
     // console.log("handle gesture::i have been called check ");
 
-    if (touchendY === touchstartY && touchendX=== touchstartX) {
+    if (touchendY === touchstartY && touchendX === touchstartX) {
         //'Tap'
     }
     else if (Math.abs(touchendX - touchstartX) > Math.abs(touchendY - touchstartY)) {
         if (touchendX < touchstartX) {
-       //     console.log('Swiped left')
+            //     console.log('Swiped left')
             moveObj('ArrowLeft');
         }
-        
+
         else if (touchendX > touchstartX) {
             //'Swiped right'
             moveObj('ArrowRight');
@@ -94,6 +100,8 @@ function drawgame() {
             clearScreen();
             drawApple();
             drawSnake();
+            if(tailLenght>7)
+                drawGreenApple();
             checkCollision();
             setTimeout(drawgame, 1000 / speed);
 
@@ -121,26 +129,30 @@ function moveSnake() {
     headY = headY + yVelocity;
     headX = headX + xVelocity;
 
-    if(noWalls)
-    {
+    if (noWalls) {
         if (headY < 0) {
-            headY=tileCount-1;
+            headY = tileCount - 1;
         }
         else if (headY === tileCount) {
-            headY=0;
+            headY = 0;
         }
         else if (headX === tileCount) {
-            headX=0;
+            headX = 0;
         }
         else if (headX < 0) {
-            headX=tileCount-1;
+            headX = tileCount - 1;
         }
     }
 }
 function drawApple() {
 
     ctx.fillStyle = 'Red';
-    ctx.fillRect(appleX * tileCount, appleY * tileCount, tileSize, tileSize)
+    ctx.fillRect(appleX * tileCount, appleY * tileCount, tileSize, tileSize);
+}
+function drawGreenApple(){
+    ctx.fillStyle = 'DarkGreen';
+    PowerUp= true;
+    ctx.fillRect(GappleX * tileCount, GappleY * tileCount, tileSize, tileSize);
 }
 function checkCollision() {
     if (appleX === headX && appleY === headY) {
@@ -150,6 +162,13 @@ function checkCollision() {
         score++;
         sound.play();
         speed = speed + (speed / (speed * score));
+    }
+    else if(GappleX === headX && GappleY === headY && PowerUp==true ) {
+        GappleX = ~~(Math.random() * tileCount);
+        GappleY = ~~(Math.random() * tileCount);
+        tailLenght/=2;
+        PowerUp=false;
+        gaSound.play();
     }
     updateScore();
 }
@@ -168,8 +187,8 @@ function moveObj(e) {
             case "ArrowDown": if (yVelocity === -1 || pause) { return; } xVelocity = 0; yVelocity = 1; break;
             case "ArrowLeft": if (xVelocity === 1 || pause) { return; } xVelocity = -1; yVelocity = 0; break;
             case " ": if (pause) { pause = false; drawgame(); } else pause = true; break;
-            case 'r' || 'R': if(enableReset) reset(); break;
-        case 'd': if(noWalls){noWalls=false; walls.checked=false;}else{noWalls=true; walls.checked=true;} break;
+            case 'r' || 'R': if (enableReset) reset(); break;
+            case 'd': if (noWalls) { noWalls = false; walls.checked = false; } else { noWalls = true; walls.checked = true; } break;
         }
     }
 }
@@ -180,8 +199,7 @@ function over() {
     }
 
     // wall collision
-    if(!noWalls)
-    {
+    if (!noWalls) {
 
         if (headY < 0) {
             gameOver = true;
@@ -215,7 +233,7 @@ function over() {
         // Fill with gradient
         ctx.fillStyle = gradient;
         ctx.fillText("Game Over!", canvas.width / 6.5, canvas.height / 2);
-        enableReset=true;
+        enableReset = true;
         overSound.play();
     }
     return gameOver;
@@ -229,22 +247,22 @@ function reset() {
     yVelocity = 0;
     appleX = 5;
     appleY = 5;
+    PowerUp= false;
     tailLenght = 2;
-    noWalls=walls.checked;
-    for(let i in snakeParts)
-    {
+    noWalls = walls.checked;
+    for (let i in snakeParts) {
         snakeParts.pop();
     }
     score = 0;
-    enableReset=false;
+    enableReset = false;
     clearScreen();
     startSound.play();
     drawgame();
 }
-function togglePause(){
-    moveObj(' '); 
+function togglePause() {
+    moveObj(' ');
 }
-function Treset(){
+function Treset() {
     moveObj('r');
 }
 
