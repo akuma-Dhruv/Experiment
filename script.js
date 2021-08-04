@@ -271,14 +271,14 @@ function Switch() {
     b.classList.forEach(element => {
         if (element === "dark") {
             b.classList.remove('dark');
-            console.log('me called');
+       
             removed=true;
             return;
         }
     });
     if(!removed)
     b.classList.add("dark");
-    console.log( 'end statement called');
+   
 
 }
 
