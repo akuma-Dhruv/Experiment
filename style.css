@@ -18,8 +18,8 @@ canvas{
 }
 .darkBtn{
     position: absolute;
-    left:20%;
-    top: 70%;
+    left:250px;
+    top: 85%;
     -webkit-border-radius: 20px;
    -moz-border-radius: 20px;
    border-radius: 50px;
