@@ -23,7 +23,7 @@ let appleY = 5;
 
 let GappleX = 7;
 let GappleY = 7;
-let PowerUp= false;
+let PowerUp = false;
 
 
 const snakeParts = [];
@@ -100,7 +100,7 @@ function drawgame() {
             clearScreen();
             drawApple();
             drawSnake();
-            if(tailLenght>7)
+            if (tailLenght > 7)
                 drawGreenApple();
             checkCollision();
             setTimeout(drawgame, 1000 / speed);
@@ -149,9 +149,9 @@ function drawApple() {
     ctx.fillStyle = 'Red';
     ctx.fillRect(appleX * tileCount, appleY * tileCount, tileSize, tileSize);
 }
-function drawGreenApple(){
+function drawGreenApple() {
     ctx.fillStyle = 'DarkGreen';
-    PowerUp= true;
+    PowerUp = true;
     ctx.fillRect(GappleX * tileCount, GappleY * tileCount, tileSize, tileSize);
 }
 function checkCollision() {
@@ -163,11 +163,11 @@ function checkCollision() {
         sound.play();
         speed = speed + (speed / (speed * score));
     }
-    else if(GappleX === headX && GappleY === headY && PowerUp==true ) {
+    else if (GappleX === headX && GappleY === headY && PowerUp == true) {
         GappleX = ~~(Math.random() * tileCount);
         GappleY = ~~(Math.random() * tileCount);
-        tailLenght/=2;
-        PowerUp=false;
+        tailLenght /= 2;
+        PowerUp = false;
         gaSound.play();
     }
     updateScore();
@@ -247,7 +247,7 @@ function reset() {
     yVelocity = 0;
     appleX = 5;
     appleY = 5;
-    PowerUp= false;
+    PowerUp = false;
     tailLenght = 2;
     noWalls = walls.checked;
     for (let i in snakeParts) {
@@ -264,6 +264,22 @@ function togglePause() {
 }
 function Treset() {
     moveObj('r');
+}
+function Switch() {
+    let b = document.getElementsByTagName("BODY")[0];
+    let removed=false;
+    b.classList.forEach(element => {
+        if (element === "dark") {
+            b.classList.remove('dark');
+            console.log('me called');
+            removed=true;
+            return;
+        }
+    });
+    if(!removed)
+    b.classList.add("dark");
+    console.log( 'end statement called');
+
 }
 
 startSound.play();

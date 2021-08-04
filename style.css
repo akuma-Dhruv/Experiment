@@ -12,3 +12,23 @@ canvas{
     box-shadow: black 20px 10px 50px;
     margin: 50px;
 }
+.dark{
+    background-color:  #39065A;
+    color: #C4BBF0;
+}
+.darkBtn{
+    position: absolute;
+    left:20%;
+    top: 70%;
+    -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 50px;
+   color: #FFFFFF;
+   font-family: Garamond;
+   font-size: 19px;
+   font-weight: 100;
+   padding: 18px;
+   background-color: #4F3B78;
+   cursor: pointer;
+   text-align: center;
+}
